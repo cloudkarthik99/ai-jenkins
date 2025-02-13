@@ -11,7 +11,7 @@ data "aws_ami" "amazon_linux_2" {
 resource "aws_instance" "jenkins_master" {
   ami           = data.aws_ami.amazon_linux_2.id
   instance_type = "t3.medium"
-  subnet_id     = aws_subnet.private_subnet.id
+  subnet_id     = data.aws_subnet.private_subnet.id
   key_name      = "jenkins-master"
 
   vpc_security_group_ids = [aws_security_group.jenkins_master.id]
@@ -27,7 +27,7 @@ resource "aws_instance" "jenkins_master" {
 resource "aws_instance" "jenkins_slave" {
   ami           = data.aws_ami.amazon_linux_2.id
   instance_type = "t3.medium"
-  subnet_id     = aws_subnet.private_subnet.id
+  subnet_id     = data.aws_subnet.private_subnet.id
   key_name      = "jenkins-slave"
 
   vpc_security_group_ids = [aws_security_group.jenkins_slave.id]

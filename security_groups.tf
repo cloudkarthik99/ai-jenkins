@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb" {
   name        = "jenkins-alb-sg"
   description = "Security group for Jenkins ALB"
-  vpc_id      = aws_vpc.jenkins_vpc.id
+  vpc_id      = data.aws_vpc.existing_vpc.id
 
   ingress {
     from_port   = 80
@@ -25,7 +25,7 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "jenkins_master" {
   name        = "jenkins-master-sg"
   description = "Security group for Jenkins master"
-  vpc_id      = aws_vpc.jenkins_vpc.id
+  vpc_id      = data.aws_vpc.existing_vpc.id
 
   ingress {
     from_port       = 8080
@@ -56,7 +56,7 @@ resource "aws_security_group" "jenkins_master" {
 resource "aws_security_group" "jenkins_slave" {
   name        = "jenkins-slave-sg"
   description = "Security group for Jenkins slave"
-  vpc_id      = aws_vpc.jenkins_vpc.id
+  vpc_id      = data.aws_vpc.existing_vpc.id
 
   ingress {
     from_port       = 22
