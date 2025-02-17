@@ -2,7 +2,7 @@ node_modules
 
 package-lock.json
 
-terraform.tfvars
+*.tfvars
 .terraform/*
 terraform.tfstate*
 
